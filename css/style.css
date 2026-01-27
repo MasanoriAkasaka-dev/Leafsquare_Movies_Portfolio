@@ -222,18 +222,72 @@ body {
     gap: 60px;
 }
 
+/* ビデオエリアを基準にする */
 .modal-video-area {
-    flex: 2;
     position: relative;
-    background: #050505;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
-.video-shield { position: absolute; inset: 0; z-index: 10; cursor: default; }
+/* 中央再生ボタンのコンテナ */
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100; /* ビデオより前面 */
+    background: rgba(0, 0, 0, 0.1); /* 停止時にわずかに暗くする */
+    transition: opacity 0.3s ease, visibility 0.3s;
+    cursor: pointer;
+}
 
-#modal-video { max-width: 100%; max-height: 80vh; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+/* 再生中に隠すためのクラス */
+.video-overlay.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* 隠れている時はビデオの操作を邪魔しない */
+}
+
+/* 再生ボタンの外円 */
+.big-play-button {
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.video-overlay:hover .big-play-button {
+    transform: scale(1.15);
+}
+
+/* 三角形アイコン */
+.big-play-button::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-left: 28px solid #000; /* 黒い三角形 */
+    margin-left: 8px; /* 中心を視覚的に調整 */
+}
+
+#modal-video {
+    max-width: 100%;
+    max-height: 80vh;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    z-index: 50; /* ボタンより背面に、でも確実に見える位置に */
+    position: relative;
+    outline: none;
+}
 
 .modal-info-area { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 

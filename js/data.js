@@ -11,7 +11,7 @@ const videoData = [
         size: "横長", 
         purpose: "Web広告", 
         thumb: "https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?auto=format&fit=crop&q=80&w=800", 
-        src: "video1.mp4", 
+        src: "videos/video2.mp4", 
         desc: "製品の質感を強調したシネマティックな広告映像。光の屈折と水の動きをマクロ撮影で捉えました。", 
         tech: "Arri Alexa, DaVinci Resolve" 
     },

@@ -97,7 +97,10 @@
         <button id="close-modal" class="close-btn">&times;</button>
         <div class="modal-content">
             <div class="modal-video-area">
-                <div class="video-shield"></div>
+                <div id="video-overlay" class="video-overlay">
+                    <div class="big-play-button"></div>
+                </div>
+                
                 <video id="modal-video" controls controlsList="nodownload" oncontextmenu="return false;">
                     <source src="" type="video/mp4">
                 </video>
