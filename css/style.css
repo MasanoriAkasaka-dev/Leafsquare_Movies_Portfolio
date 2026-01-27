@@ -46,15 +46,29 @@ body {
     gap: 12px;
 }
 
-.logo-icon {
-    width: 32px;
-    height: 32px;
-    background: white;
-    color: black;
+/* --- ロゴのスタイル設定 --- */
+.logo-area {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-weight: 900;
+}
+
+.site-logo {
+    height: 40px;      /* ロゴの高さを指定（お好みで調整してください） */
+    width: auto;       /* 横幅は自動計算（比率を維持） */
+    display: block;
+    object-fit: contain;
+    transition: opacity 0.3s;
+}
+
+.site-logo:hover {
+    opacity: 0.8;      /* ホバー時に少し透明にする演出 */
+}
+
+/* モバイル対応：画面が小さい時はロゴを少し小さくする */
+@media (max-width: 640px) {
+    .site-logo {
+        height: 32px;
+    }
 }
 
 .logo-text { line-height: 1.1; }
