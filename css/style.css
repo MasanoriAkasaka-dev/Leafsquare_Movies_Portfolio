@@ -428,4 +428,32 @@ body {
     }
 
     .header-nav { display: none; }
+
+    /* 1. フッター内の横並びを解除して縦並びにする */
+    .footer-inner {
+        flex-direction: column;
+        gap: 40px; /* 各ブロック間の余白 */
+        align-items: flex-start; /* 左寄せ */
+    }
+
+    /* 2. リンク集(Follow Us / Contact)の横並びを調整 */
+    .footer-links {
+        display: flex;
+        flex-direction: row; /* ここは2列のままでも、縦並びでもOK */
+        gap: 60px; /* 項目間の距離 */
+        width: 100%;
+    }
+
+    /* 3. 各リンクグループの幅を確保 */
+    .link-group {
+        flex: 1;
+    }
+
+    /* 4. フッター底部の著作権表記も縦並びにして整理 */
+    .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
 }
