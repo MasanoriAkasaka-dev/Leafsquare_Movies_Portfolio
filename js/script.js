@@ -23,16 +23,25 @@ function renderVideos() {
     filteredData.forEach(video => {
         const card = document.createElement('div');
         card.className = 'video-card';
+        card.setAttribute('data-id', video.id); // IDを保持
         card.innerHTML = `
             <div class="thumb-wrapper">
                 <img src="${video.thumb}" alt="${video.title}" loading="lazy">
                 <div class="play-icon"><div class="play-shape"></div></div>
             </div>
-            <span class="card-purpose">${video.purpose}</span>
-            <h3 class="card-title">${video.title}</h3>
-            <div class="card-meta">${video.size} / ${video.genre}</div>
+            <div class="card-details">
+                <span class="card-purpose">${video.purpose}</span>
+                <h3 class="card-title">${video.title}</h3>
+                <div class="card-meta">${video.size} / ${video.genre}</div>
+            </div>
         `;
-        card.onclick = () => openModal(video); // ここが動かない原因は後で調査します
+        
+        // クリックイベントを確実に関連付け
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(video);
+        });
+        
         videoGrid.appendChild(card);
     });
 }
