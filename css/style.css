@@ -100,7 +100,7 @@ body {
 }
 
 .intro-text h1 {
-    font-size: 64px;
+    font-size: 42px;
     font-weight: bold;
     line-height: 1;
     letter-spacing: -0.05em;
@@ -372,8 +372,34 @@ body {
 .footer-inner { display: flex; justify-content: space-between; margin-bottom: 80px; }
 .footer-links { display: flex; gap: 80px; }
 .link-group h4 { font-size: 10px; color: var(--muted-color); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 20px; }
-.link-group a { display: block; color: white; text-decoration: none; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 12px; transition: color 0.3s; }
+.link-group a { 
+    display: block; 
+    color: white; 
+    text-decoration: none; 
+    font-size: 10px; 
+    letter-spacing: 0.1em; 
+    margin-bottom: 12px; 
+    transition: color 0.3s; 
+    text-align: center;
+}
 .link-group a:hover { color: var(--muted-color); }
+
+/* フッター内の説明テキスト用スタイル */
+.footer-description {
+    margin-top: 24px; /* ロゴとの隙間を確保 */
+    color: var(--muted-color);
+    font-size: 13px;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+}
+
+/* スマホ表示時（640px以下）の微調整 */
+@media (max-width: 640px) {
+    .footer-description {
+        margin-top: 20px; /* スマホでは少し隙間を抑える */
+        font-size: 12px;
+    }
+}
 
 .footer-bottom { border-top: 1px solid #111; pt: 40px; display: flex; justify-content: space-between; font-size: 9px; color: #444; padding-top: 30px;}
 

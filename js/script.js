@@ -13,35 +13,32 @@ function renderVideos() {
     videoGrid.innerHTML = '';
     
     const filteredData = videoData.filter(video => {
-        // ジャンルフィルタの判定（何も選択されていない場合は全表示、選択されている場合はそのいずれかに合致）
-        const genreMatch = currentGenres.length === 0 || currentGenres.includes(video.genre);
+        // --- ジャンルフィルタの判定ロジックを修正 ---
+        // 選択されているジャンル(currentGenres)のどれか一つが、
+        // 動画のジャンル配列(video.genre)の中に含まれているかを確認
+        const genreMatch = currentGenres.length === 0 || 
+                          currentGenres.some(selectedGenre => video.genre.includes(selectedGenre));
+        
         const sizeMatch = currentSize === 'all' || video.size === currentSize;
         return genreMatch && sizeMatch;
     });
 
-    // (以下、card生成のループ処理はそのまま)
     filteredData.forEach(video => {
         const card = document.createElement('div');
         card.className = 'video-card';
-        card.setAttribute('data-id', video.id); // IDを保持
+        // 表示部分：配列をカンマ区切りの文字列にして表示
+        const genreDisplay = Array.isArray(video.genre) ? video.genre.join(', ') : video.genre;
+
         card.innerHTML = `
             <div class="thumb-wrapper">
                 <img src="${video.thumb}" alt="${video.title}" loading="lazy">
                 <div class="play-icon"><div class="play-shape"></div></div>
             </div>
-            <div class="card-details">
-                <span class="card-purpose">${video.purpose}</span>
-                <h3 class="card-title">${video.title}</h3>
-                <div class="card-meta">${video.size} / ${video.genre}</div>
-            </div>
+            <span class="card-purpose">${video.purpose}</span>
+            <h3 class="card-title">${video.title}</h3>
+            <div class="card-meta">${video.size} / ${genreDisplay}</div>
         `;
-        
-        // クリックイベントを確実に関連付け
-        card.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal(video);
-        });
-        
+        card.addEventListener('click', () => openModal(video));
         videoGrid.appendChild(card);
     });
 }
