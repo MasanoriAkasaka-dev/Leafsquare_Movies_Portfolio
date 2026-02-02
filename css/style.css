@@ -151,7 +151,12 @@ body {
     transition: all 0.3s;
 }
 
-.filter-btn.active { background: white; color: black; border-color: white; }
+.filter-btn.active {
+    background: white;
+    color: black;
+    border-color: white;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* 選ばれている感を強調 */
+}
 
 /* --- Video Grid --- */
 .video-grid {

@@ -1,5 +1,5 @@
-// 状態管理
-let currentGenre = 'all';
+// --- 状態管理の変更 ---
+let currentGenres = []; // 配列に変更
 let currentSize = 'all';
 
 // 要素の取得
@@ -8,16 +8,18 @@ const modal = document.getElementById('modal');
 const modalVideo = document.getElementById('modal-video');
 const closeModalBtn = document.getElementById('close-modal');
 
-// 動画カードの描画
+// --- renderVideos関数のロジック修正 ---
 function renderVideos() {
     videoGrid.innerHTML = '';
     
     const filteredData = videoData.filter(video => {
-        const genreMatch = currentGenre === 'all' || video.genre === currentGenre;
+        // ジャンルフィルタの判定（何も選択されていない場合は全表示、選択されている場合はそのいずれかに合致）
+        const genreMatch = currentGenres.length === 0 || currentGenres.includes(video.genre);
         const sizeMatch = currentSize === 'all' || video.size === currentSize;
         return genreMatch && sizeMatch;
     });
 
+    // (以下、card生成のループ処理はそのまま)
     filteredData.forEach(video => {
         const card = document.createElement('div');
         card.className = 'video-card';
@@ -30,7 +32,7 @@ function renderVideos() {
             <h3 class="card-title">${video.title}</h3>
             <div class="card-meta">${video.size} / ${video.genre}</div>
         `;
-        card.onclick = () => openModal(video);
+        card.onclick = () => openModal(video); // ここが動かない原因は後で調査します
         videoGrid.appendChild(card);
     });
 }
@@ -76,12 +78,34 @@ function closeModal() {
     document.body.style.overflow = 'auto';
 }
 
-// フィルタ・イベント（変更なし）
+// --- ジャンルフィルタのクリックイベント修正 ---
 document.querySelectorAll('#genre-filters .filter-btn').forEach(btn => {
     btn.onclick = () => {
-        document.querySelectorAll('#genre-filters .filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentGenre = btn.dataset.filter;
+        const genre = btn.dataset.filter;
+
+        if (genre === 'all') {
+            currentGenres = [];
+            document.querySelectorAll('#genre-filters .filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        } else {
+            // "ALL" ボタンの active を解除
+            document.querySelector('#genre-filters .filter-btn[data-filter="all"]').classList.remove('active');
+
+            if (currentGenres.includes(genre)) {
+                // すでに選択されていれば削除（OFFにする）
+                currentGenres = currentGenres.filter(g => g !== genre);
+                btn.classList.remove('active');
+            } else {
+                // 選択されていなければ追加（ONにする）
+                currentGenres.push(genre);
+                btn.classList.add('active');
+            }
+
+            // 一つも選択されていない場合は "ALL" を active に戻す
+            if (currentGenres.length === 0) {
+                document.querySelector('#genre-filters .filter-btn[data-filter="all"]').classList.add('active');
+            }
+        }
         renderVideos();
     };
 });

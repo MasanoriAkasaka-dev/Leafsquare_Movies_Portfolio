@@ -22,7 +22,7 @@ const videoData = [
         size: "横長", 
         purpose: "SNS", 
         thumb: "images/onigiri.png?auto=format&fit=crop&q=80&w=800", 
-        src: "videos/no.mp4", 
+        src: "videos/onigiri.mp4", 
         desc: "TikTok/Reels向けのダイナミックな縦型編集。テンポの良いカット割りとタイポグラフィが特徴です。", 
         tech: "Premiere Pro, After Effects" 
     },
