@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Division Portfolio</title>
+    <title>Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header class="site-header">
+    <header id="top" class="site-header">
         <div class="container header-inner">
             <div class="logo-area">
-                <a href="/">
-                    <img src="images/logo.png" alt="Visual Logic Logo" class="site-logo">
+                <a href="#top">
+                    <img src="images/logo.png" alt="Logo" class="site-logo">
                 </a>
             </div>
-            <nav class="header-nav">
-                <a href="#" class="active">WORKS</a>
+            <nav class="nav-links">
+                <a href="#works-section">WORKS</a>
                 <a href="https://leafsquare.co.jp/contact/" class="contact-link">CONTACT</a>
             </nav>
         </div>
@@ -37,7 +37,7 @@
         </div>
     </section>
 
-    <section class="filter-section container">
+    <section id="works-section" class="filter-section container">
         <div class="filter-group">
             <span class="filter-label">ジャンル</span>
             <div id="genre-filters" class="filter-buttons">
@@ -70,15 +70,17 @@
         <div class="container footer-inner">
             <div class="footer-info">
                 <div class="logo-area">
-                    <img src="images/logo.png" alt="Visual Logic Logo" class="site-logo">
+                    <a href="#top">
+                        <img src="images/logo.png" alt="Logo" class="site-logo">
+                    </a>
                 </div>
                 <p class="footer-description">制作のご相談・ご依頼を心よりお待ちしております。</p>
             </div>
             <div class="footer-links">
                 <div class="link-group">
                     <h4>Follow Us</h4>
-                    <a href="https://www.instagram.com/leafsquare/">INSTAGRAM</a>
                     <a href="https://x.com/leafsquarecojp">X</a>
+                    <a href="https://www.instagram.com/leafsquare/">INSTAGRAM</a>
                 </div>
                 <div class="link-group">
                     <h4>Contact</h4>
@@ -110,7 +112,7 @@
                 <h2 id="modal-title"></h2>
                 <p id="modal-desc"></p>
                 <div class="tech-info">
-                    <span class="tech-label">Specifications</span>
+                    <span class="tech-label">使用ソフト</span>
                     <p id="modal-tech"></p>
                 </div>
                 <button class="enquiry-btn">REQUEST DETAILS</button>

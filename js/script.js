@@ -125,6 +125,33 @@ document.querySelectorAll('#size-filters .filter-btn').forEach(btn => {
     };
 });
 
+// スムーズスクロールの微調整（ヘッダーと被る場合）
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const href = this.getAttribute('href');
+        const target = document.querySelector(href);
+        if (!target) return;
+
+        let targetPosition;
+
+        if (href === "#top") {
+            // ロゴクリック時：ページの最上部（0）へ
+            targetPosition = 0;
+        } else {
+            // WORKSなど他のリンク：ヘッダーの高さを考慮
+            const headerHeight = document.querySelector('header').offsetHeight;
+            targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        }
+
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    });
+});
+
 closeModalBtn.onclick = closeModal;
 modal.onclick = (e) => { if(e.target === modal) closeModal(); };
 

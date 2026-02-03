@@ -9,6 +9,10 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -64,13 +68,6 @@ body {
     opacity: 0.8;      /* ホバー時に少し透明にする演出 */
 }
 
-/* モバイル対応：画面が小さい時はロゴを少し小さくする */
-@media (max-width: 640px) {
-    .site-logo {
-        height: 32px;
-    }
-}
-
 .logo-text { line-height: 1.1; }
 .brand-name { display: block; font-weight: bold; letter-spacing: 0.1em; }
 .division-name { font-size: 10px; color: var(--muted-color); letter-spacing: 0.2em; }
@@ -89,6 +86,34 @@ body {
 }
 
 .header-nav a.active, .header-nav a:hover { color: white; }
+
+/* ナビゲーションリンクのスタイルを白に固定 */
+.nav-links {
+    display: flex;
+    gap: 40px; 
+    align-items: center;
+}
+
+.nav-links a {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em; /* 文字が小さいので、少し字間を広げるとより高級感が出ます */
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    text-transform: uppercase; /* 小文字で入力していても大文字に固定（デザインを整えるため） */
+}
+
+/* ホバー（マウスを乗せた時）の演出 */
+.nav-links a:hover {
+    opacity: 0.7; /* 少し透かして反応を見せる */
+}
+
+/* 訪問済みリンクも白のままにする */
+.nav-links a:visited {
+    color: #ffffff;
+}
 
 /* --- Intro & Ad --- */
 .intro-section { padding: 80px 0; }
@@ -392,18 +417,163 @@ body {
     line-height: 1.8;
     letter-spacing: 0.05em;
 }
+.footer-bottom { border-top: 1px solid #111; pt: 40px; display: flex; justify-content: space-between; font-size: 9px; color: #444; padding-top: 30px;}
 
+/* --- Responsive --- */
 /* スマホ表示時（640px以下）の微調整 */
 @media (max-width: 640px) {
+
+    .intro-text h1 {
+        font-size: 32px;
+    }
+
+    .header-nav { display: none; }
+
+    .site-logo {
+        height: 32px;
+    }
+
+    .ad-area {
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.05); /* 少しだけ背景を明るく */
+        border-left: 3px solid white; /* アクセントラインを太くして目立たせる */
+        border-right: none; border-top: none; border-bottom: none;
+    }
+
+    .ad-label {
+        font-size: 10px;
+        color: white; /* グレーから白に変更してハッキリさせる */
+        letter-spacing: 0.15em;
+    }
+
+    .ad-content {
+        font-size: 16px; /* 文字を大きく */
+        line-height: 1.5;
+        margin: 12px 0;
+        color: #fff;
+    }
+
+    .card-purpose {
+        display: inline-block;
+        font-size: 8px;
+        background: #333; /* タグのような背景をつける */
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 2px;
+        margin-bottom: 4px;
+        letter-spacing: 0.05em;
+    }
+
+    .card-meta {
+        font-size: 8px;
+        color: #fff; /* 少し明るいグレーに変更 */
+        margin-top: 4px;
+    }
+
+    .card-title {
+        font-size: 13px; /* 2列だとタイトルが重なりやすいため小さく */
+        line-height: 1.3;
+        margin-bottom: 4px;
+        color: #fff;
+    }
+
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 24px 12px; /* 縦の隙間は少し多め、横はタイトに */
+        padding-bottom: 60px;
+    }
+
+    .thumb-wrapper {
+        margin-bottom: 12px;
+    }
+
+    /* フィルター全体のレイアウト調整 */
+    .filter-section {
+        padding: 20px 0;
+        gap: 12px;
+    }
+
+    .filter-group {
+        position: relative;
+        display: block;
+        /* 右端を少し暗くして「続き」を暗示するグラデーション */
+        background: linear-gradient(to right, transparent 85%, #000 100%);
+    }
+
+    .filter-label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        color: #ffffff;
+    }
+
+    .filter-buttons {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        /* スクロールバーを隠す */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-bottom: 5px; /* スクロール時の微かな影用 */
+    }
+
+    .filter-buttons::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-btn {
+        flex: 0 0 auto;
+        padding: 8px 18px;
+        font-size: 11px;
+        white-space: nowrap;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* 選択中のボタンはハッキリ白にする */
+    .filter-btn.active {
+        background: #ffffff;
+        color: #000000;
+        border-color: #ffffff;
+    }
+
+    .link-group {
+        flex: 1;
+    }
+
     .footer-description {
         margin-top: 20px; /* スマホでは少し隙間を抑える */
         font-size: 12px;
     }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: 40px; /* 各ブロック間の余白 */
+        align-items: flex-start; /* 左寄せ */
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: row; /* ここは2列のままでも、縦並びでもOK */
+        gap: 60px; /* 項目間の距離 */
+        width: 100%;
+    }
+
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
 }
 
-.footer-bottom { border-top: 1px solid #111; pt: 40px; display: flex; justify-content: space-between; font-size: 9px; color: #444; padding-top: 30px;}
 
-/* --- Responsive --- */
+
+/* --- タブレットサイズ --- */
 @media (max-width: 1024px) {
     .video-grid { grid-template-columns: repeat(2, 1fr); }
     .intro-grid { grid-template-columns: 1fr; }
@@ -417,69 +587,5 @@ body {
         flex: 0 0 auto;
         width: 100%;
         padding-right: 0;
-    }
-}
-
-@media (max-width: 640px) {
-    /* 1. グリッドを2列に変更 */
-    .video-grid {
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 24px 12px; /* 縦の隙間は少し多め、横はタイトに */
-        padding-bottom: 60px;
-    }
-
-    /* 2. カード内の余白と文字サイズを調整 */
-    .thumb-wrapper {
-        margin-bottom: 12px;
-    }
-
-    .card-title {
-        font-size: 13px; /* 2列だとタイトルが重なりやすいため小さく */
-        line-height: 1.3;
-        margin-bottom: 4px;
-    }
-
-    .card-purpose {
-        font-size: 8px;
-        margin-bottom: 4px;
-    }
-
-    .card-meta {
-        font-size: 8px;
-    }
-
-    /* 3. イントロ部分（見出し）の調整 */
-    .intro-text h1 {
-        font-size: 32px;
-    }
-
-    .header-nav { display: none; }
-
-    /* 1. フッター内の横並びを解除して縦並びにする */
-    .footer-inner {
-        flex-direction: column;
-        gap: 40px; /* 各ブロック間の余白 */
-        align-items: flex-start; /* 左寄せ */
-    }
-
-    /* 2. リンク集(Follow Us / Contact)の横並びを調整 */
-    .footer-links {
-        display: flex;
-        flex-direction: row; /* ここは2列のままでも、縦並びでもOK */
-        gap: 60px; /* 項目間の距離 */
-        width: 100%;
-    }
-
-    /* 3. 各リンクグループの幅を確保 */
-    .link-group {
-        flex: 1;
-    }
-
-    /* 4. フッター底部の著作権表記も縦並びにして整理 */
-    .footer-bottom {
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
-        padding-top: 20px;
     }
 }
