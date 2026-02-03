@@ -278,6 +278,12 @@ body {
     min-height: 400px; /* モバイル等で潰れないよう最低限の高さを確保 */
 }
 
+.info-content-white{
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
 /* 中央再生ボタンのコンテナ：親要素(.modal-video-area)いっぱいに広がる */
 .video-overlay {
     position: absolute;
@@ -347,7 +353,15 @@ body {
     padding-right: 20px; /* 右側に少し余白を */
 }
 
-.info-label { border-left: 2px solid white; padding-left: 16px; font-size: 10px; letter-spacing: 0.3em; color: var(--muted-color); text-transform: uppercase; margin-bottom: 24px; }
+.info-label {
+    border-left: 2px solid white;
+    padding-left: 16px; 
+    font-size: 10px; 
+    letter-spacing: 0.3em; 
+    color: var(--muted-color); 
+    text-transform: uppercase; 
+    margin-bottom: 24px;
+}
 
 /* タイトルのフォントサイズを微調整 */
 #modal-title {
@@ -358,17 +372,12 @@ body {
     letter-spacing: -0.02em;
 }
 
-/* 説明文の可読性アップ */
-#modal-desc {
-    color: #ccc;
-    font-size: 15px;
-    line-height: 1.8;
-    margin-bottom: 30px;
+.info-block {
+    margin-bottom: 15px;
 }
 
 .tech-info { margin-bottom: 40px; }
 .tech-label { font-size: 9px; color: var(--muted-color); text-transform: uppercase; letter-spacing: 0.2em; display: block; margin-bottom: 8px; }
-#modal-tech { font-family: monospace; font-size: 12px; color: #ccc; }
 
 .enquiry-btn {
     background: white;
@@ -583,9 +592,29 @@ body {
         overflow-y: auto;
         padding-top: 40px;
     }
-    .modal-video-area, .modal-info-area {
+    .modal-video-area {
         flex: 0 0 auto;
         width: 100%;
         padding-right: 0;
     }
+
+    .modal-info-area {
+        flex: 0 0 auto;
+        width: 100%;
+        /* 左右に 20px〜30px の余裕を持たせる */
+        padding: 0 24px 40px 24px; 
+        box-sizing: border-box; /* 余白を幅に含める設定 */
+    }
+
+    /* タイトルのサイズもスマホ向けに微調整 */
+    #modal-title {
+        font-size: 24px;
+        margin-top: 10px;
+    }
+
+    /* 各ブロックの下の余白を少し広げてゆとりを持たせる */
+    .info-block {
+        margin-bottom: 32px;
+    }
 }
+

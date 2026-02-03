@@ -43,34 +43,6 @@ function renderVideos() {
     });
 }
 
-// モーダル制御
-function openModal(video) {
-    document.getElementById('modal-title').innerText = video.title;
-    document.getElementById('modal-purpose').innerText = video.purpose;
-    document.getElementById('modal-desc').innerText = video.desc;
-    document.getElementById('modal-tech').innerText = video.tech;
-    
-    if (video.size === "縦長") {
-        modalVideo.style.cssText = "aspect-ratio: 9/16; width: auto; height: 85vh; max-width: 100%;";
-    } else {
-        modalVideo.style.cssText = "aspect-ratio: 16/9; width: 100%; height: auto;";
-    }
-
-    // パス設定と強制ロード
-    modalVideo.src = video.src;
-    modalVideo.load(); 
-
-    modal.style.display = 'flex';
-    
-    // ロード完了を待ってから再生
-    modalVideo.oncanplay = () => {
-        modal.classList.add('active');
-        modalVideo.play().catch(e => console.log("Auto-play blocked"));
-    };
-
-    document.body.style.overflow = 'hidden';
-}
-
 // 右クリックを動画上で直接禁止する（シールド不要）
 modalVideo.addEventListener('contextmenu', e => e.preventDefault());
 
@@ -164,23 +136,39 @@ const videoOverlay = document.getElementById('video-overlay');
 
 // --- openModal関数（修正） ---
 function openModal(video) {
+    // 1. 基本情報のセット
     document.getElementById('modal-title').innerText = video.title;
-    document.getElementById('modal-purpose').innerText = video.purpose;
     document.getElementById('modal-desc').innerText = video.desc;
-    document.getElementById('modal-tech').innerText = video.tech;
     
+    // 2. 担当範囲(ROLE)のセット
+    const modalRole = document.getElementById('modal-role');
+    if (modalRole) {
+        modalRole.innerText = video.role || "制作全般";
+    }
+    
+    // 3. 使用ソフト(SOFTWARE)のセット
+    const modalTech = document.getElementById('modal-tech');
+    if (modalTech) {
+        modalTech.innerText = video.tech;
+    }
+    
+    // 4. 動画サイズの判定
     if (video.size === "縦長") {
         modalVideo.style.cssText = "aspect-ratio: 9/16; width: auto; height: 85vh; max-width: 100%;";
     } else {
         modalVideo.style.cssText = "aspect-ratio: 16/9; width: 100%; height: auto;";
     }
 
+    // 5. ソースのセットと読み込み
     modalVideo.src = video.src;
     modalVideo.load(); 
 
-    // モーダルを開いた時はボタンを表示する
-    videoOverlay.classList.remove('is-hidden');
+    // 6. オーバーレイの表示設定
+    if (videoOverlay) {
+        videoOverlay.classList.remove('is-hidden');
+    }
 
+    // 7. モーダルを表示
     modal.style.display = 'flex';
     setTimeout(() => modal.classList.add('active'), 10);
     document.body.style.overflow = 'hidden';
