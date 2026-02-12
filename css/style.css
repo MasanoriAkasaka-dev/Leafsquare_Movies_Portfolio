@@ -57,15 +57,15 @@ body {
 }
 
 .site-logo {
-    height: 40px;      /* ロゴの高さを指定（お好みで調整してください） */
-    width: auto;       /* 横幅は自動計算（比率を維持） */
+    height: 40px;
+    width: auto; 
     display: block;
     object-fit: contain;
     transition: opacity 0.3s;
 }
 
 .site-logo:hover {
-    opacity: 0.8;      /* ホバー時に少し透明にする演出 */
+    opacity: 0.8;
 }
 
 .logo-text { line-height: 1.1; }
@@ -87,7 +87,6 @@ body {
 
 .header-nav a.active, .header-nav a:hover { color: white; }
 
-/* ナビゲーションリンクのスタイルを白に固定 */
 .nav-links {
     display: flex;
     gap: 40px; 
@@ -99,18 +98,16 @@ body {
     text-decoration: none;
     font-size: 10px;
     font-weight: 500;
-    letter-spacing: 0.2em; /* 文字が小さいので、少し字間を広げるとより高級感が出ます */
+    letter-spacing: 0.2em;
     transition: opacity 0.3s ease;
     cursor: pointer;
-    text-transform: uppercase; /* 小文字で入力していても大文字に固定（デザインを整えるため） */
+    text-transform: uppercase;
 }
 
-/* ホバー（マウスを乗せた時）の演出 */
 .nav-links a:hover {
-    opacity: 0.7; /* 少し透かして反応を見せる */
+    opacity: 0.7;
 }
 
-/* 訪問済みリンクも白のままにする */
 .nav-links a:visited {
     color: #ffffff;
 }
@@ -180,7 +177,7 @@ body {
     background: white;
     color: black;
     border-color: white;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* 選ばれている感を強調 */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 /* --- Video Grid --- */
@@ -206,7 +203,6 @@ body {
     width: 100%;
     height: 100%;
     object-cover: cover;
-    /*filter: grayscale(100%) brightness(0.8);*/
     transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -256,26 +252,24 @@ body {
 
 .modal.active { display: flex; opacity: 1; }
 
-/* モーダルコンテンツのレイアウト修正 */
 .modal-content {
     display: flex;
     width: 100%;
-    max-width: 1400px; /* 少し広げてゆとりを持たせる */
+    max-width: 1400px;
     max-height: 90vh;
-    gap: 40px; /* 間隔を少し詰めて領域を確保 */
+    gap: 40px; 
     align-items: center;
 }
 
-/* ビデオエリア：ここを基準点にする */
 .modal-video-area {
     flex: 0 0 60%;
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative; /* 追記：これが再生ボタンの基準になります */
+    position: relative; 
     overflow: hidden;
-    min-height: 400px; /* モバイル等で潰れないよう最低限の高さを確保 */
+    min-height: 400px;
 }
 
 .info-content-white{
@@ -284,7 +278,6 @@ body {
     line-height: 1.8;
 }
 
-/* 中央再生ボタンのコンテナ：親要素(.modal-video-area)いっぱいに広がる */
 .video-overlay {
     position: absolute;
     top: 0;
@@ -300,14 +293,12 @@ body {
     cursor: pointer;
 }
 
-/* 再生中に隠すためのクラス */
 .video-overlay.is-hidden {
     opacity: 0;
     visibility: hidden;
-    pointer-events: none; /* 隠れている時はビデオの操作を邪魔しない */
+    pointer-events: none;
 }
 
-/* 再生ボタンの外円 */
 .big-play-button {
     width: 90px;
     height: 90px;
@@ -324,33 +315,30 @@ body {
     transform: scale(1.15);
 }
 
-/* 三角形アイコン */
 .big-play-button::after {
     content: "";
     width: 0;
     height: 0;
     border-top: 18px solid transparent;
     border-bottom: 18px solid transparent;
-    border-left: 28px solid #000; /* 黒い三角形 */
-    margin-left: 8px; /* 中心を視覚的に調整 */
+    border-left: 28px solid #000;
+    margin-left: 8px;
 }
 
-/* ビデオ自体の表示設定 */
 #modal-video {
     max-width: 100%;
-    max-height: 80vh; /* 画面からはみ出さないように */
+    max-height: 80vh;
     display: block;
     position: relative;
     z-index: 50;
 }
 
-/* 説明文エリア：幅を広げる（40%） */
 .modal-info-area {
     flex: 0 0 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 20px; /* 右側に少し余白を */
+    padding-right: 20px;
 }
 
 .info-label {
@@ -363,9 +351,8 @@ body {
     margin-bottom: 24px;
 }
 
-/* タイトルのフォントサイズを微調整 */
 #modal-title {
-    font-size: 32px; /* 巨大すぎた場合は少し抑えてバランスを取る */
+    font-size: 32px;
     font-weight: bold;
     line-height: 1.2;
     margin-bottom: 20px;
@@ -418,20 +405,18 @@ body {
 }
 .link-group a:hover { color: var(--muted-color); }
 
-/* フッター内の説明テキスト用スタイル */
 .footer-description {
-    margin-top: 24px; /* ロゴとの隙間を確保 */
-    color: var(--muted-color);
+    margin-top: 24px;
     font-size: 13px;
     line-height: 1.8;
     letter-spacing: 0.05em;
 }
+
 .footer-bottom { border-top: 1px solid #111; pt: 40px; display: flex; justify-content: space-between; font-size: 9px; color: #444; padding-top: 30px;}
 
 /* --- Responsive --- */
-/* スマホ表示時（640px以下）の微調整 */
+/* スマホ表示時（640px以下）の調整 */
 @media (max-width: 640px) {
-
     .intro-text h1 {
         font-size: 32px;
     }
@@ -444,19 +429,19 @@ body {
 
     .ad-area {
         padding: 24px;
-        background: rgba(255, 255, 255, 0.05); /* 少しだけ背景を明るく */
-        border-left: 3px solid white; /* アクセントラインを太くして目立たせる */
+        background: rgba(255, 255, 255, 0.05);
+        border-left: 3px solid white;
         border-right: none; border-top: none; border-bottom: none;
     }
 
     .ad-label {
         font-size: 10px;
-        color: white; /* グレーから白に変更してハッキリさせる */
+        color: white;
         letter-spacing: 0.15em;
     }
 
     .ad-content {
-        font-size: 16px; /* 文字を大きく */
+        font-size: 16px;
         line-height: 1.5;
         margin: 12px 0;
         color: #fff;
@@ -465,7 +450,7 @@ body {
     .card-purpose {
         display: inline-block;
         font-size: 8px;
-        background: #333; /* タグのような背景をつける */
+        background: #333;
         color: #fff;
         padding: 2px 8px;
         border-radius: 2px;
@@ -475,12 +460,12 @@ body {
 
     .card-meta {
         font-size: 8px;
-        color: #fff; /* 少し明るいグレーに変更 */
+        color: #fff;
         margin-top: 4px;
     }
 
     .card-title {
-        font-size: 13px; /* 2列だとタイトルが重なりやすいため小さく */
+        font-size: 13px;
         line-height: 1.3;
         margin-bottom: 4px;
         color: #fff;
@@ -488,7 +473,7 @@ body {
 
     .video-grid {
         grid-template-columns: repeat(2, 1fr); 
-        gap: 24px 12px; /* 縦の隙間は少し多め、横はタイトに */
+        gap: 24px 12px;
         padding-bottom: 60px;
     }
 
@@ -496,7 +481,6 @@ body {
         margin-bottom: 12px;
     }
 
-    /* フィルター全体のレイアウト調整 */
     .filter-section {
         padding: 20px 0;
         gap: 12px;
@@ -505,7 +489,6 @@ body {
     .filter-group {
         position: relative;
         display: block;
-        /* 右端を少し暗くして「続き」を暗示するグラデーション */
         background: linear-gradient(to right, transparent 85%, #000 100%);
     }
 
@@ -523,10 +506,9 @@ body {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         gap: 8px;
-        /* スクロールバーを隠す */
         scrollbar-width: none;
         -ms-overflow-style: none;
-        padding-bottom: 5px; /* スクロール時の微かな影用 */
+        padding-bottom: 5px;
     }
 
     .filter-buttons::-webkit-scrollbar {
@@ -542,7 +524,6 @@ body {
         border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* 選択中のボタンはハッキリ白にする */
     .filter-btn.active {
         background: #ffffff;
         color: #000000;
@@ -551,23 +532,25 @@ body {
 
     .link-group {
         flex: 1;
+        text-align: center;
+
     }
 
     .footer-description {
-        margin-top: 20px; /* スマホでは少し隙間を抑える */
+        margin-top: 20px;
         font-size: 12px;
     }
 
     .footer-inner {
         flex-direction: column;
-        gap: 40px; /* 各ブロック間の余白 */
-        align-items: flex-start; /* 左寄せ */
+        gap: 40px;
+        align-items: flex-start;
     }
 
     .footer-links {
         display: flex;
-        flex-direction: row; /* ここは2列のままでも、縦並びでもOK */
-        gap: 60px; /* 項目間の距離 */
+        flex-direction: row;
+        gap: 60px;
         width: 100%;
     }
 
@@ -579,7 +562,6 @@ body {
         padding-top: 20px;
     }
 }
-
 
 
 /* --- タブレットサイズ --- */
@@ -601,18 +583,15 @@ body {
     .modal-info-area {
         flex: 0 0 auto;
         width: 100%;
-        /* 左右に 20px〜30px の余裕を持たせる */
         padding: 0 24px 40px 24px; 
-        box-sizing: border-box; /* 余白を幅に含める設定 */
+        box-sizing: border-box;
     }
 
-    /* タイトルのサイズもスマホ向けに微調整 */
     #modal-title {
         font-size: 24px;
         margin-top: 10px;
     }
 
-    /* 各ブロックの下の余白を少し広げてゆとりを持たせる */
     .info-block {
         margin-bottom: 32px;
     }
